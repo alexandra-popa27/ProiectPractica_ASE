@@ -29,5 +29,20 @@ namespace ProiectPractica_ASE.Controllers
             })
             .ToArray();
         }
+        [HttpPost]
+        public IActionResult Post()
+        {
+            return StatusCode(200);
+        }
+        [HttpPut]
+        public IActionResult Put()
+        {
+            return StatusCode(200);
+        }
+        [HttpDelete]
+        public IActionResult Delete()
+        {
+            return StatusCode(200);
+        }
     }
 }
