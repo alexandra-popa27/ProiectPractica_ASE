@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProiectPractica_ASE.Models;
 
-namespace ProiectPractica_ASE.Models
+namespace ProiectPractica_ASE.Services
 {
     public interface IAnnouncementsService
     {
