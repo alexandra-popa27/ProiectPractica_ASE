@@ -12,6 +12,7 @@ namespace ProiectPractica_ASE.App_Data
         public ClubMembershipDbContext(DbContextOptions<ClubMembershipDbContext> options) : base(options) { }
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<CodeSnippet>CodeSnippets{get;set;}
-        //public DbSet<Member>Members{get;set;}
+        public DbSet<Member>Members{get;set;}
+   
     }
 }

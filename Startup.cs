@@ -39,6 +39,7 @@ namespace ProiectPractica_ASE
 
             services.AddTransient<IAnnouncementsService, AnnouncementsService>();
             services.AddTransient<ICodeSnippetService, CodeSnippetService>();
+            services.AddTransient<IMembersService, MembersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
