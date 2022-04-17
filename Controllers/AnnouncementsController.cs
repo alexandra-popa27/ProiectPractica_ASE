@@ -8,7 +8,7 @@ namespace ProiectPractica_ASE.Controllers
 {
     [Route("controller")]
     [ApiController]
-    public class AnnouncementsController : Controller
+    public class AnnouncementsController : ControllerBase
     {
         private readonly IAnnouncementsService _announcementsService;
 

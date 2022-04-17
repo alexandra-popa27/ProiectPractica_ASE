@@ -7,7 +7,7 @@ namespace ProiectPractica_ASE.Controllers
 {
     [Route("controller")]
     [ApiController]
-    public class MembersController : Controller
+    public class MembersController : ControllerBase
     {
         private readonly IMembersService _membersService;
 

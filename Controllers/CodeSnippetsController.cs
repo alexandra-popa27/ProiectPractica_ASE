@@ -7,7 +7,7 @@ namespace ProiectPractica_ASE.Controllers
 {
     [Route("controller")]
     [ApiController]
-    public class CodeSnippetsController : Controller
+    public class CodeSnippetsController : ControllerBase
     {
         private readonly ICodeSnippetService _codeSnippetService;
         public CodeSnippetsController(ICodeSnippetService codeSnippetService)
