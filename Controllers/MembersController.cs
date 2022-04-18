@@ -11,13 +11,10 @@ namespace ProiectPractica_ASE.Controllers
     {
         private readonly IMembersService _membersService;
 
-
-
         public MembersController(IMembersService membersService)
         {
             _membersService = membersService;
         }
-
 
         [Route("GetMembers")]
         [HttpGet]
