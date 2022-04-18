@@ -28,5 +28,20 @@ namespace ProiectPractica_ASE.Controllers
             }
             return StatusCode(404);
         }
+        [Route("PostCodeSnippets")]
+        [HttpPost]
+        public async Task<IActionResult> PostCodeSnippets([FromBody]CodeSnippet codeSnippet)
+        {
+            try
+            {
+                if(codeSnippet!=null)
+                {
+                    await _codeSnippetService.Post(codeSnippet);
+                    return StatusCode(201, "Code snippet-ul a fost adaugat in tabel");
+                }
+            }
+            catch(Exception ex) { return StatusCode(500, ex); }
+            return StatusCode(500);
+        }
     }
 }

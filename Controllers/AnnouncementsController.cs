@@ -17,7 +17,7 @@ namespace ProiectPractica_ASE.Controllers
             _announcementsService = announcementsService;
         }
 
-
+        [Route("GetAnnouncements")]
         [HttpGet]
         public async Task<IActionResult> GetAnnouncements()
         {
@@ -31,8 +31,9 @@ namespace ProiectPractica_ASE.Controllers
             return StatusCode(404);
         }
 
+        [Route("PostAnnouncements")]
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Announcement announcement)
+        public async Task<IActionResult> PostAnnouncements([FromBody]Announcement announcement)
         {
             try
             {
