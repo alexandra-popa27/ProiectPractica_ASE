@@ -19,7 +19,7 @@ namespace ProiectPractica_ASE.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAnnouncements()
         {
             DbSet<Announcement> announcements = await _announcementsService.Get();
             if (announcements != null)

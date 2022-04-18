@@ -14,8 +14,9 @@ namespace ProiectPractica_ASE.Controllers
         {
             _codeSnippetService = codeSnippetService;
         }
+
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetCodeSnippets()
         {
             DbSet<CodeSnippet> codeSnippets = await _codeSnippetService.Get();
             if (codeSnippets != null)

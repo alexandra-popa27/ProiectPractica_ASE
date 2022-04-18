@@ -5,18 +5,23 @@ using ProiectPractica_ASE.Services;
 
 namespace ProiectPractica_ASE.Controllers
 {
-    [Route("controller")]
+    [Route("[controller]")]
     [ApiController]
     public class MembersController : ControllerBase
     {
         private readonly IMembersService _membersService;
 
+
+
         public MembersController(IMembersService membersService)
         {
             _membersService = membersService;
         }
+
+
+
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetMembers()
         {
             DbSet<Member> members = await _membersService.Get();
             if (members != null)
@@ -27,7 +32,6 @@ namespace ProiectPractica_ASE.Controllers
             }
             return StatusCode(404);
         }
-
-
     }
 }
+    
