@@ -19,7 +19,7 @@ namespace ProiectPractica_ASE.Controllers
         }
 
 
-
+        [Route("GetMembers")]
         [HttpGet]
         public async Task<IActionResult> GetMembers()
         {

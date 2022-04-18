@@ -15,6 +15,7 @@ namespace ProiectPractica_ASE.Controllers
             _codeSnippetService = codeSnippetService;
         }
 
+        [Route("GetCodeSnippets")]
         [HttpGet]
         public async Task<IActionResult> GetCodeSnippets()
         {
