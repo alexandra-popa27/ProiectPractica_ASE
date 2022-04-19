@@ -6,5 +6,6 @@ namespace ProiectPractica_ASE.Services
     public interface IMembershipTypesService
     {
         public Task<DbSet<MembershipType>> Get();
+        public Task Post(MembershipType membershipType);
     }
 }

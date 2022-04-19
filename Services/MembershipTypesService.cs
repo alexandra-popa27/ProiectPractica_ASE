@@ -15,5 +15,17 @@ namespace ProiectPractica_ASE.Services
         {
             return _context.MembershipTypes;
         }
+        public async Task Post(MembershipType membershipType)
+        {
+            var membershipType_new = new MembershipType
+            {
+                IdMembershipType = Guid.NewGuid(),
+                Name = membershipType.Name,
+                Description = membershipType.Description,
+                SubscriptionLenghtMonths = membershipType.SubscriptionLenghtMonths,
+            };
+            _context.Entry(membershipType_new).State = EntityState.Added;
+            _context.SaveChanges();
+        }
     }
 }

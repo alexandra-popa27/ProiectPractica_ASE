@@ -27,5 +27,21 @@ namespace ProiectPractica_ASE.Controllers
             }
             return StatusCode(404);
         }
+
+        [Route("PostMemberships")]
+        [HttpPost]
+        public async Task<IActionResult> PostMemberships([FromBody] Membership memberships)
+        {
+            try
+            {
+                if (memberships != null)
+                {
+                    await _membershipsService.Post(memberships);
+                    return StatusCode(201, "Membership-ul a fost adaugat in tabel");
+                }
+            }
+            catch (Exception ex) { return StatusCode(500, ex); }
+            return StatusCode(500);
+        }
     }
 }

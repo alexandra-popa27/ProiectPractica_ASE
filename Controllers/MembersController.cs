@@ -29,6 +29,22 @@ namespace ProiectPractica_ASE.Controllers
             }
             return StatusCode(404);
         }
+
+        [Route("PostMember")]
+        [HttpPost]
+        public async Task<IActionResult> PostMember([FromBody] Member member)
+        {
+            try
+            {
+                if (member != null)
+                {
+                    await _membersService.Post(member);
+                    return StatusCode(201, "Membrul a fost adaugat in tabel");
+                }
+            }
+            catch (Exception ex) { return StatusCode(500, ex); }
+            return StatusCode(500);
+        }
     }
 }
     

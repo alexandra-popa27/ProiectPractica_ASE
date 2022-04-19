@@ -16,5 +16,20 @@ namespace ProiectPractica_ASE.Services
         {
             return _context.Members;
         }
+        public async Task Post(Member member)
+        {
+            var member_new = new Member
+            {
+                IdMember=Guid.NewGuid(),
+                Name= member.Name,
+                Title= member.Title,
+                Position= member.Position,
+                Description= member.Description,
+                Resume=member.Resume,
+            };
+            _context.Entry(member_new).State = EntityState.Added;
+            _context.SaveChanges();
+
+        }
     }
 }

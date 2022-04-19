@@ -29,5 +29,21 @@ namespace ProiectPractica_ASE.Controllers
             }
             return StatusCode(404);
         }
+
+        [Route("PostMembershipTypes")]
+        [HttpPost]
+        public async Task<IActionResult> PostMembershipTypes([FromBody] MembershipType membershipType)
+        {
+            try
+            {
+                if (membershipType != null)
+                {
+                    await _membershipTypeService.Post(membershipType);
+                    return StatusCode(201, "Tipul de membership a fost adaugat in tabel");
+                }
+            }
+            catch (Exception ex) { return StatusCode(500, ex); }
+            return StatusCode(500);
+        }
     }
 }
