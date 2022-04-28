@@ -43,5 +43,29 @@ namespace ProiectPractica_ASE.Controllers
             catch (Exception ex) { return StatusCode(500, ex); }
             return StatusCode(500);
         }
+
+        [Route("DeleteMemberships")]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteMemberships([FromBody] Membership membership)
+        {
+            if (membership != null)
+            {
+                await _membershipsService.Delete(membership);
+                return StatusCode(200, "Membership-ul a fost sters");
+            }
+            return StatusCode(500, "A aparut o eroare!Membership-ul nu a fost sters");
+        }
+
+        [Route("PutMemberships")]
+        [HttpPut]
+        public async Task<IActionResult> PutMemberships([FromBody] Membership membership)
+        {
+            if (membership != null)
+            {
+                await _membershipsService.Put(membership);
+                return StatusCode(200, "Membership-ul a fost modificat!");
+            }
+            return StatusCode(500, "A aparut o eroare!Membership-ul nu a fost modificat!");
+        }
     }
 }

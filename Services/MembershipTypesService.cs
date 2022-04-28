@@ -11,6 +11,13 @@ namespace ProiectPractica_ASE.Services
         {
             _context = context;
         }
+
+        public async Task Delete(MembershipType membershipType)
+        {
+            _context.MembershipTypes.Remove(membershipType);
+            _context.SaveChanges();
+        }
+
         public async Task<DbSet<MembershipType>> Get()
         {
             return _context.MembershipTypes;
@@ -25,6 +32,12 @@ namespace ProiectPractica_ASE.Services
                 SubscriptionLenghtMonths = membershipType.SubscriptionLenghtMonths,
             };
             _context.Entry(membershipType_new).State = EntityState.Added;
+            _context.SaveChanges();
+        }
+
+        public async Task Put(MembershipType membershipType)
+        {
+            _context.Update(membershipType);
             _context.SaveChanges();
         }
     }

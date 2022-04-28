@@ -28,6 +28,7 @@ namespace ProiectPractica_ASE.Controllers
             }
             return StatusCode(404);
         }
+
         [Route("PostCodeSnippets")]
         [HttpPost]
         public async Task<IActionResult> PostCodeSnippets([FromBody]CodeSnippet codeSnippet)
@@ -42,6 +43,30 @@ namespace ProiectPractica_ASE.Controllers
             }
             catch(Exception ex) { return StatusCode(500, ex); }
             return StatusCode(500);
+        }
+
+        [Route("DeleteCodeSnippets")]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCodeSnippets([FromBody]CodeSnippet codeSnippet)
+        {
+            if(codeSnippet!=null)
+            {
+                await _codeSnippetService.Delete(codeSnippet);
+                return StatusCode(200, "Code snippet-ul a fost sters");
+            }
+            return StatusCode(500, "A aparut o eroare!Code snippet-ul nu a fost sters");
+        }
+
+        [Route("PutCodeSnippets")]
+        [HttpPut]
+        public async Task<IActionResult> PutCodeSnippets([FromBody] CodeSnippet codeSnippet)
+        {
+            if (codeSnippet != null)
+            {
+                await _codeSnippetService.Put(codeSnippet);
+                return StatusCode(200, "Code snippet-ul a fost modificat!");
+            }
+            return StatusCode(500, "A aparut o eroare!Code snippet-ul nu a fost modificat!");
         }
     }
 }

@@ -7,5 +7,7 @@ namespace ProiectPractica_ASE.Services
     {
         public Task<DbSet<Membership>> Get();
         public Task Post(Membership memberships);
+        public Task Delete(Membership membership);
+        public Task Put(Membership membership);
     }
 }

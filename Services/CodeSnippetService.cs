@@ -13,6 +13,13 @@ namespace ProiectPractica_ASE.Services
         {
             _context = context;
         }
+
+        public async Task Delete(CodeSnippet codeSnippet)
+        {
+            _context.Remove(codeSnippet);
+            _context.SaveChanges();
+        }
+
         public async Task<DbSet<CodeSnippet>> Get()
         {
             return _context.CodeSnippets;
@@ -31,6 +38,12 @@ namespace ProiectPractica_ASE.Services
                 DateTimeAdded = DateTime.Now,
             };
             _context.Entry(codeS).State = EntityState.Added;
+            _context.SaveChanges();
+        }
+
+        public async Task Put(CodeSnippet codeSnippet)
+        {
+            _context.Update(codeSnippet);
             _context.SaveChanges();
         }
     }

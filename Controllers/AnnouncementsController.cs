@@ -49,5 +49,29 @@ namespace ProiectPractica_ASE.Controllers
             }
             return StatusCode(500, "Anuntul nu a fost adaugat!");
         }
+
+        [Route("DeleteAnnouncements")]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAnnouncements([FromBody] Announcement announcement)
+        {
+            if(announcement!=null)
+            {
+                await _announcementsService.Delete(announcement);
+                return StatusCode(200, "Anuntul a fost sters!");
+            }
+            return StatusCode(200, "A aparut o eroare!Anuntul nu a fost sters!");
+        }
+
+        [Route("PutAnnouncements")]
+        [HttpPut]
+        public async Task<IActionResult> PutAnnouncements([FromBody] Announcement announcement)
+        {
+            if(announcement!=null)
+            {
+                await _announcementsService.Put(announcement);
+                return StatusCode(200, "Anuntul a fost modificat!");
+            }
+            return StatusCode(500, "A aparut o eroare!Anuntul nu a fost modificat!");
+        }
     }
 }

@@ -45,6 +45,30 @@ namespace ProiectPractica_ASE.Controllers
             catch (Exception ex) { return StatusCode(500, ex); }
             return StatusCode(500);
         }
+
+        [Route("DeleteMember")]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteMember([FromBody] Member member)
+        {
+            if (member != null)
+            {
+                await _membersService.Delete(member);
+                return StatusCode(200, "Membrul a fost sters");
+            }
+            return StatusCode(500, "A aparut o eroare!Membrul nu a fost sters");
+        }
+
+        [Route("PutMember")]
+        [HttpPut]
+        public async Task<IActionResult> PutMember([FromBody] Member member)
+        {
+            if (member != null)
+            {
+                await _membersService.Put(member);
+                return StatusCode(200, "Membrul a fost modificat!");
+            }
+            return StatusCode(500, "A aparut o eroare!Membrul nu a fost modificat!");
+        }
     }
 }
     

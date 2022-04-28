@@ -15,6 +15,13 @@ namespace ProiectPractica_ASE.Services
         {
             _context = context;
         }
+
+        public async Task Delete(Announcement announcement)
+        {
+            _context.Remove(announcement);
+            _context.SaveChanges();
+        }
+
         public async Task<DbSet<Announcement>>Get()
         {
             return _context.Announcements;
@@ -32,6 +39,12 @@ namespace ProiectPractica_ASE.Services
                 EventDate = announcement.EventDate
             };
             _context.Entry(announcement_new).State = EntityState.Added;
+            _context.SaveChanges();
+        }
+
+        public async Task Put(Announcement announcement)
+        {
+            _context.Update(announcement);
             _context.SaveChanges();
         }
     }

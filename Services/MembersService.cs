@@ -12,6 +12,13 @@ namespace ProiectPractica_ASE.Services
         {
             _context = context;
         }
+
+        public async Task Delete(Member member)
+        {
+            _context.Members.Remove(member);
+            _context.SaveChanges();
+        }
+
         public async Task<DbSet<Member>> Get()
         {
             return _context.Members;
@@ -30,6 +37,12 @@ namespace ProiectPractica_ASE.Services
             _context.Entry(member_new).State = EntityState.Added;
             _context.SaveChanges();
 
+        }
+
+        public async Task Put(Member member)
+        {
+            _context.Update(member);
+            _context.SaveChanges();
         }
     }
 }
