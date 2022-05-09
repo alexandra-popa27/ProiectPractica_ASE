@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProiectPractica_ASE.Models;
 using ProiectPractica_ASE.Services;
@@ -6,6 +8,7 @@ using ProiectPractica_ASE.Services;
 
 namespace ProiectPractica_ASE.Controllers
 {
+    [Authorize(AuthenticationSchemes=JwtBearerDefaults.AuthenticationScheme)]
     [Route("controller")]
     [ApiController]
     public class AnnouncementsController : ControllerBase
