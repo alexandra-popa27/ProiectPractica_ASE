@@ -11,6 +11,5 @@ namespace ProiectPractica_ASE.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int Level { get; set; }
-        public string Text { get; set; }
     }
 }

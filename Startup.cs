@@ -36,41 +36,47 @@ namespace ProiectPractica_ASE
             services.AddDbContext<ClubMembershipDbContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(swagger =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProiectPractica_ASE", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                swagger.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Name="Authentication",
-                    Type=SecuritySchemeType.ApiKey,
-                    Scheme="Bearer",
-                    BearerFormat="JWT",
-                    In=ParameterLocation.Header,
-                    Description="JWT Authentication header using the Bearer scheme",
+                    Version = "v1",
+                    Title = "JWT Token Authentication API",
+                    Description = "ASP.NET Core 3.1 Web API"
                 });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+
+                swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
+                });
+                swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference=new OpenApiReference
+                        new OpenApiSecurityScheme
                         {
-                            Type=ReferenceType.SecurityScheme,
-                            Id="Bearer",
-                        }
-                    },
-                        new string[]{}
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+
                     }
                 });
             });
 
-            services.AddAuthentication(options =>
+            services.AddAuthentication(option =>
             {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-            ).AddJwtBearer(options =>
+            }).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -78,9 +84,9 @@ namespace ProiectPractica_ASE
                     ValidateAudience = true,
                     ValidateLifetime = false,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = "https://localhost:7249",
-                    ValidAudience = "https://localhost:7249",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("AuthSecret_AuthSecret"))
+                    ValidIssuer = "https://localhost:44382",
+                    ValidAudience = "https://localhost:44382",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("AuthSecret_AuthSecret")) //Configuration["JwtToken:SecretKey"]
                 };
             });
 
@@ -113,6 +119,14 @@ namespace ProiectPractica_ASE
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+            app.UseAuthentication();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Practica");
             });
         }
     }

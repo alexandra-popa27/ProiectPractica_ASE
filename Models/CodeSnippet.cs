@@ -12,6 +12,5 @@ namespace ProiectPractica_ASE.Models
         public int Revision { get; set; }
         public bool IsPublished { get; set; }
         public DateTime DateTimeAdded { get; set; }
-        public string Text { get; set; }
     }
 }
